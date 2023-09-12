@@ -39,11 +39,12 @@ export const startGame = (count, columns) => {
 
   gameSection.append(gameTable, restartBtn);
   gameTable.style = `grid-template-columns: repeat(${columns}, 1fr);`
-  
+
   const cards = document.querySelectorAll(".game-card");
 
   restartBtn.addEventListener("click", () => {
     createGameMenu()
+    document.querySelector(".confetti").innerHTML = '';
     moves.innerText = `Шаги: 0 шагов`;
     time.innerText = `Время: 60 сек`;
     clearInterval(loop)
@@ -110,7 +111,6 @@ export const startGame = (count, columns) => {
 
         if ( Array.from(cards).every((card) => card.className.includes("flip"))) {
           document.querySelector(".confetti").innerHTML = confetti;
-          clearInterval(loop);
         }
       }
     })

@@ -15,6 +15,8 @@ export const createGameMenu = () => {
   input.placeholder = "По горизонтали / вертикали";
   input.type = "number";
   inputBox.classList.add("input-box");
+  input.max = 6;
+  input.min = 2;
 
 
   form.append(title);
@@ -28,20 +30,19 @@ export const createGameMenu = () => {
     startButton.classList.add("button");
     span.textContent = "Начать";
     startButton.append(span);
-    startButton.addEventListener("click", () => {
+    form.append(startButton)
+    startButton.addEventListener("click", (element) => {
+      element.preventDefault()
       let columns = input.value;
         if (input.value >= 2 && input.value <= 6  && input.value % 2 == 0) {
           count = input.value * input.value;
         } else  {
           input.value = 4;
         }
-
       startGame(count, columns)
     });
-
-    return startButton;
+    return form
   };
-
   gameBoard.append(form, createGame());
 
 };

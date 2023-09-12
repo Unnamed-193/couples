@@ -113,7 +113,19 @@ input:focus {
   background: linear-gradient(90deg, #ff0000, #082bdc, #ee9506);
 }
 
+.button:focus-visible:before,
+.button:focus-visible:after,
+.restart-button:focus-visible:before,
+.restart-button:focus-visible:after {
+  background: linear-gradient(90deg, #ff0000, #082bdc, #ee9506);
+}
+
 .button:hover:after, .restart-button:hover:after {
+  inset: -2px;
+  filter: blur(10px);
+}
+
+.button:focus-visible:after, .restart-button:focus-visible:after {
   inset: -2px;
   filter: blur(10px);
 }
@@ -158,6 +170,15 @@ input:focus {
   color: #fff;
 }
 
+.button:focus-visible span:before, .restart-button:focus-visible span:before {
+  left: 0%;
+  transition: 0.3s ease;
+}
+
+.button:focus-visible span, .restart-button:focus-visible span {
+  color: #fff;
+}
+
 .game-board {
   display: flex;
   flex-direction: column;
@@ -171,6 +192,7 @@ input:focus {
 
 
 .game-table {
+  min-width: 500px;
   max-width: 1000px;
   margin-bottom: 20px;
   display: grid;
@@ -223,8 +245,7 @@ input:focus {
 
 @media (max-width: 644px) {
   .game-table {
-    min-width: 200px ;
-    max-width: 350px;
+    min-width: 375px ;
     margin-bottom: 20px;
     grid-template-rows: 1fr;
     justify-items: stretch;
@@ -252,9 +273,5 @@ input:focus {
 
   .restart-button {
     width: 80%;
-  }
-
-  .game-card {
-    height: 50px;
   }
 }

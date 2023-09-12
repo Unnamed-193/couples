@@ -11,12 +11,7 @@
 
 .game-content {
   position: absolute;
-  top: 50%;
-  left: 50%;
-
-  transform: translateY(-50%) translateX(-50%);
-  z-index: 10;
-  display: flex;
+  z-index: 1;
 }
 
 body {
@@ -25,13 +20,12 @@ body {
   background-size: cover;
   font-family: Arial, Helvetica, sans-serif;
   min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
 }
 
-.container {
-  max-width: 1200px;
-  padding: 0 15px;
-  margin: 0 auto;
-}
 
 .header {
   padding: 30px 0;
@@ -40,11 +34,15 @@ body {
 .title{
   font-size: 36px;
   text-align: center;
+  margin-right: 15px;
   margin-bottom: 15px;
 }
 
+.moves {
+  margin-right: 15px;
+}
+
 .game-section {
-  max-width: 800px;
   background-color: transparent;
   border: 2px solid rgba(255, 255, 255, .2);
   backdrop-filter: blur(20px);
@@ -173,18 +171,15 @@ input:focus {
 
 
 .game-table {
-  width: 500px;
+  max-width: 1000px;
   margin-bottom: 20px;
-  display: inline-flex;
-  flex-wrap: wrap;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
 }
 
 
 .game-card {
-  width: 50px;
-    height: 100px;
-    flex: 0 0 23%;
     aspect-ratio: 1;
     display: flex;
     justify-content: center;
@@ -192,11 +187,10 @@ input:focus {
     background: rgba(218, 69, 218, 0.6);
     border-radius: 5px;
     transition: all 0.3s linear;
-    margin: 1%;
 }
 
 .game-card i {
-  font-size: 40px;
+  font-size: 30px;
   display: none;
 }
 
@@ -229,15 +223,15 @@ input:focus {
 
 @media (max-width: 644px) {
   .game-table {
-    max-width: 300px;
+    min-width: 200px ;
+    max-width: 350px;
     margin-bottom: 20px;
-    display: inline-flex;
-    flex-wrap: wrap;
-    justify-content: center;
+    grid-template-rows: 1fr;
+    justify-items: stretch;
   }
 
   .game-section {
-    max-width: 300px;
+    max-width: 500px;
     background-color: transparent;
     border: 2px solid rgba(255, 255, 255, .2);
     backdrop-filter: blur(20px);
@@ -261,16 +255,6 @@ input:focus {
   }
 
   .game-card {
-    width: 30px;
-      height: 60px;
-      flex: 0 0 21%;
-      aspect-ratio: 1;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background: rgba(218, 69, 218, 0.6);
-      border-radius: 5px;
-      transition: all 0.3s linear;
-      margin: 1%;
+    height: 50px;
   }
 }

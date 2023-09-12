@@ -3,7 +3,9 @@ import { createGameCard } from "./gameCard.js";
 import { createGameMenu } from "./gameMenu.js";
 import { createIconsArray, duplicateArray, shuffle } from "./utils.js";
 
-export const startGame = (count) => {
+
+
+export const startGame = (count, columns) => {
   let firstCard = null,
     secondCard = null,
     clickable = true;
@@ -20,6 +22,9 @@ export const startGame = (count) => {
   let totalTime = 60;
   let totalFlips = 0;
 
+
+
+
   gameSection.innerHTML = "";
   gameTable.classList.add("game-table");
   restartBtn.classList.add("restart-button");
@@ -33,7 +38,8 @@ export const startGame = (count) => {
   );
 
   gameSection.append(gameTable, restartBtn);
-
+  gameTable.style = `grid-template-columns: repeat(${columns}, 1fr);`
+  
   const cards = document.querySelectorAll(".game-card");
 
   restartBtn.addEventListener("click", () => {
@@ -52,7 +58,6 @@ export const startGame = (count) => {
       clearInterval(loop)
     }
   }, 1000);
-
 
 
   cards.forEach((card, index) =>
@@ -110,4 +115,5 @@ export const startGame = (count) => {
       }
     })
   );
+
 };

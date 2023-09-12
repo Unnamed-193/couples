@@ -32,21 +32,26 @@ export const createIconsArray = (initialCount) => {
     "basketball-ball",
     "arrows",
     "angle-left",
+    "bars",
+    "file",
+    "filter",
+    "gear",
+    "folder",
+    "folder-open",
+    "shield",
+    "scissors",
+    "pen-clip"
   ];
 
 
   switch (initialCount) {
     case 4:
       return cardsIcons.slice(0, 2);
-    case 8:
-      return cardsIcons.slice(0, 4);
-    case 12:
-      return cardsIcons.slice(0, 6);
     case 16:
       return cardsIcons.slice(0, 8);
-    case 20:
-      return cardsIcons.slice(0, 10);
-    case 20:
+    case 36:
+      return cardsIcons.slice(0, 18);
+    case 36:
       return cardsIcons;
     default:
       break;

@@ -171,6 +171,7 @@ input:focus {
 
 
 .game-table {
+  min-width: 450px;
   max-width: 1000px;
   margin-bottom: 20px;
   display: grid;

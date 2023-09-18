@@ -3,8 +3,6 @@ import { createGameCard } from "./gameCard.js";
 import { createGameMenu } from "./gameMenu.js";
 import { createIconsArray, duplicateArray, shuffle } from "./utils.js";
 
-
-
 export const startGame = (count, columns) => {
   let firstCard = null,
     secondCard = null,
@@ -22,9 +20,6 @@ export const startGame = (count, columns) => {
   let totalTime = 60;
   let totalFlips = 0;
 
-
-
-
   gameSection.innerHTML = "";
   gameTable.classList.add("game-table");
   restartBtn.classList.add("restart-button");
@@ -38,16 +33,16 @@ export const startGame = (count, columns) => {
   );
 
   gameSection.append(gameTable, restartBtn);
-  gameTable.style = `grid-template-columns: repeat(${columns}, 1fr);`
+  gameTable.style = `grid-template-columns: repeat(${columns}, 1fr);`;
 
   const cards = document.querySelectorAll(".game-card");
 
   restartBtn.addEventListener("click", () => {
-    createGameMenu()
-    document.querySelector(".confetti").innerHTML = '';
+    createGameMenu();
+    document.querySelector(".confetti").innerHTML = "";
     moves.innerText = `Шаги: 0 шагов`;
     time.innerText = `Время: 60 сек`;
-    clearInterval(loop)
+    clearInterval(loop);
   });
 
   loop = setInterval(() => {
@@ -56,17 +51,23 @@ export const startGame = (count, columns) => {
     moves.innerText = `Шаги: ${totalFlips} шагов`;
     time.innerText = `Время: ${totalTime} сек`;
     if (totalTime == 0) {
-      clearInterval(loop)
+      clearInterval(loop);
     }
   }, 1000);
 
-
-  cards.forEach((card, index) =>
+  cards.forEach((card, index) => {
     card.addEventListener("click", () => {
-      totalFlips++
+      if (totalTime === 0) {
+        clickable = false;
+      }
+
+      if (clickable == true && !card.classList.contains("flip")) {
+        totalFlips++;
+      }
+
+
       if (clickable == true && !card.classList.contains("successfully")) {
         card.classList.add("flip");
-
         if (firstCard == null) {
           firstCard = index;
         } else {
@@ -89,10 +90,11 @@ export const startGame = (count, columns) => {
               cards[firstCard].classList.add("successfully");
               cards[secondCard].classList.add("successfully");
 
+
               firstCard = null;
               secondCard = null;
               clickable = true;
-            }, 500);
+            }, 1000);
           } else {
             setTimeout(() => {
               cards[firstCard].classList.remove("flip");
@@ -101,19 +103,21 @@ export const startGame = (count, columns) => {
               firstCard = null;
               secondCard = null;
               clickable = true;
-            }, 500);
+            }, 1000);
           }
         }
 
-        if (totalTime == 0) {
-          clickable = false;
+        if (Array.from(cards).every((card) => card.className.includes("flip"))) {
+          setTimeout(() => {
+            document.querySelector(".confetti").innerHTML = confetti;
+            clearInterval(loop);
+          }, 1500)
         }
 
-        if ( Array.from(cards).every((card) => card.className.includes("flip"))) {
-          document.querySelector(".confetti").innerHTML = confetti;
-        }
       }
-    })
-  );
 
+
+
+    });
+  });
 };

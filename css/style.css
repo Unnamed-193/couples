@@ -192,11 +192,7 @@ input:focus {
 
 
 .game-table {
-<<<<<<< HEAD
   min-width: 500px;
-=======
-  min-width: 450px;
->>>>>>> 44664958048dce73188d01de175ad48d11a4edde
   max-width: 1000px;
   margin-bottom: 20px;
   display: grid;
@@ -278,12 +274,4 @@ input:focus {
   .restart-button {
     width: 80%;
   }
-<<<<<<< HEAD
 }
-=======
-
-  .game-card {
-    height: 50px;
-  }
-}
->>>>>>> 44664958048dce73188d01de175ad48d11a4edde
